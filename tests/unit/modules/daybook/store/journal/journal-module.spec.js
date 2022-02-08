@@ -97,11 +97,18 @@ describe('Actions', () => {
     test('Action: loadEntries', async () => {
         const store = createVuexStore({ isLoading: true, entries: [] })
         await store.dispatch('journal/loadEntries')
-        console.log(store.state.journal.entries)
+        expect(store.state.journal.entries.length).toBe(2)
     });
-    test('Action: updateEntry', () => {
+    test('Action: updateEntry', async () => {
         const store = createVuexStore({ isLoading: true, entries: [] })
-        
+        const updatedEntry = {
+            "id": "-Mv3wxwFzQ4vrUoBkEo-",
+            "date": 1227077227978,
+            "text": "Entrada actualizada " + Math.floor(Math.random() * 110)
+        }
+        await store.dispatch('journal/updateEntry', updatedEntry)
+        console.log(store.state.journal.entries)
+        // expect(store.state.journal.entries.find(entry => entry.id === updatedEntry.id)).toEqual(updatedEntry)
     });
     test('Action: createEntry', () => {
         const store = createVuexStore({ isLoading: true, entries: [] })

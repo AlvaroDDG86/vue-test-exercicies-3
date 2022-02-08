@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 const journalApi = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: 'https://vue-tests-da460-default-rtdb.firebaseio.com/'
 })
 
 export default journalApi
