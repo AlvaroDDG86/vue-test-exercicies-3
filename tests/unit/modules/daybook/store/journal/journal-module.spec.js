@@ -21,20 +21,22 @@ describe('Journal module store', () => {
         expect(isLoading).toBeFalsy()
         expect(entries).toEqual(journalState.entries)
     });
+});
 
+describe('Mutations', () => {
     test('mutation: setEntries', () => {
         const store = createVuexStore({ isLoading: true, entries: [] })
-
+        
         store.commit('journal/setEntries', [...journalState.entries])
         expect(store.state.journal.entries.length).toBe(2)
         store.commit('journal/setEntries', [...journalState.entries])
         expect(store.state.journal.entries.length).toBe(4)
         expect(store.state.journal.isLoading).toBeFalsy()
     });
-  
+    
     test('mutation: updateEntry', () => {
         const store = createVuexStore(journalState)
-
+        
         const entryUpdated = {
             ...journalState.entries[0],
             text: 'text updated'
@@ -48,7 +50,7 @@ describe('Journal module store', () => {
 
     test('mutation: addEntry', () => {
         const store = createVuexStore(journalState)
-
+        
         const newEntry = {
             id: '33333',
             date: 1227077227972,
@@ -70,5 +72,23 @@ describe('Journal module store', () => {
         expect(entries.length).toBe(1)
         expect(entries.findIndex(item => item.id === id)).toBe(-1)
         expect(store.state.journal.isLoading).toBeFalsy()
+    });
+});
+
+describe('Getters', () => {
+    test('Getter: getEntriesByTerm', () => {
+        const store = createVuexStore(journalState)
+        const [ entry1 ] = journalState.entries
+        // this is not an array, is a property accesed by string
+        expect(store.getters['journal/getEntriesByTerm']().length).toBe(2)
+        expect(store.getters['journal/getEntriesByTerm'](entry1.text).length).toBe(1)
+    });
+    test('Getter: getEntryById', () => {
+        const store = createVuexStore(journalState)
+        const [ entry1 ] = journalState.entries
+        // this is not an array, is a property accesed by string
+        expect(store.getters['journal/getEntryById']()).toBeUndefined()
+        expect(store.getters['journal/getEntryById'](entry1.id)).toEqual(entry1)
+
     });
 });
