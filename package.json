@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "api:run": "json-server --watch ./backend/api.json --delay 1000"
   },
   "dependencies": {
     "axios": "^0.21.1",

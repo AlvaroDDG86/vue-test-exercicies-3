@@ -1,0 +1,14 @@
+{
+    "entries": [
+        {
+            "id": "33333",
+            "date": 1227077227978,
+            "text": "Prueba desde api 1"
+        },
+        {
+            "id": "44444",
+            "date": 1227077227990,
+            "text": "Prueba desde api 2"
+        }
+    ]
+}

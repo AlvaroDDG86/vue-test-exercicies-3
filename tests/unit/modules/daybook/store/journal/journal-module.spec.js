@@ -92,3 +92,23 @@ describe('Getters', () => {
 
     });
 });
+
+describe('Actions', () => {
+    test('Action: loadEntries', async () => {
+        const store = createVuexStore({ isLoading: true, entries: [] })
+        await store.dispatch('journal/loadEntries')
+        console.log(store.state.journal.entries)
+    });
+    test('Action: updateEntry', () => {
+        const store = createVuexStore({ isLoading: true, entries: [] })
+        
+    });
+    test('Action: createEntry', () => {
+        const store = createVuexStore({ isLoading: true, entries: [] })
+        
+    });
+    test('Action: deleteEntry', () => {
+        const store = createVuexStore({ isLoading: true, entries: [] })
+        
+    });
+})
