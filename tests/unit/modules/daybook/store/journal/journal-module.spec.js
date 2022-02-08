@@ -100,18 +100,26 @@ describe('Actions', () => {
         expect(store.state.journal.entries.length).toBe(2)
     });
     test('Action: updateEntry', async () => {
-        const store = createVuexStore({ isLoading: true, entries: [] })
+        const store = createVuexStore({ isLoading: true, entries: [{ id: '-Mv3wxwFzQ4vrUoBkEo-', text: "some text", date: 1227077227978}] })
+        expect(store.state.journal.entries.length).toBe(1)
         const updatedEntry = {
             "id": "-Mv3wxwFzQ4vrUoBkEo-",
             "date": 1227077227978,
             "text": "Entrada actualizada " + Math.floor(Math.random() * 110)
         }
         await store.dispatch('journal/updateEntry', updatedEntry)
-        console.log(store.state.journal.entries)
-        // expect(store.state.journal.entries.find(entry => entry.id === updatedEntry.id)).toEqual(updatedEntry)
+        expect(store.state.journal.entries.length).toBe(1)
+        expect(store.state.journal.entries.find(entry => entry.id === updatedEntry.id)).toEqual(updatedEntry)
     });
-    test('Action: createEntry', () => {
-        const store = createVuexStore({ isLoading: true, entries: [] })
+    test('Action: createEntry', async () => {
+        // const store = createVuexStore({ isLoading: true, entries: [] })
+        // const updatedEntry = {
+        //     "id": "-Mv3wxwFzQ4vrUoBkE2-",
+        //     "date": 1227077227978,
+        //     "text": "Entrada nueva"
+        // }
+        // await store.dispatch('journal/createEntry', updatedEntry)
+        // expect(store.state.journal.entries.find(entry => entry.id === updatedEntry.id)).toEqual(updatedEntry)
         
     });
     test('Action: deleteEntry', () => {
