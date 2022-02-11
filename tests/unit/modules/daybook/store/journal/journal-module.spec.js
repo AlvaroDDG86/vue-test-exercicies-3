@@ -118,6 +118,7 @@ describe('Actions', () => {
             "text": "Entrada nueva"
         }
         const id = await store.dispatch('journal/createEntry', newEntry)
+        expect(typeof id).toBe('string')
         expect(store.state.journal.entries.find(entry => entry.id === id).text).toBe(newEntry.text)
         await store.dispatch('journal/deleteEntry', id)
         expect(store.state.journal.entries.findIndex(entry => entry.id === id)).toBe(-1)
