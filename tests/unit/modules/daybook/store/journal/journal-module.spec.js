@@ -111,7 +111,7 @@ describe('Actions', () => {
         expect(store.state.journal.entries.length).toBe(1)
         expect(store.state.journal.entries.find(entry => entry.id === updatedEntry.id)).toEqual(updatedEntry)
     });
-    test('Action: createEntry', async () => {
+    test('Action: createEntry && deleteEntry', async () => {
         const store = createVuexStore({ isLoading: true, entries: [] })
         const newEntry = {
             "date": 1227077227978,
@@ -119,10 +119,8 @@ describe('Actions', () => {
         }
         const id = await store.dispatch('journal/createEntry', newEntry)
         expect(store.state.journal.entries.find(entry => entry.id === id).text).toBe(newEntry.text)
-        
-    });
-    test('Action: deleteEntry', () => {
-        const store = createVuexStore({ isLoading: true, entries: [] })
-        
+        await store.dispatch('journal/deleteEntry', id)
+        expect(store.state.journal.entries.findIndex(entry => entry.id === id)).toBe(-1)
+
     });
 })
