@@ -115,7 +115,6 @@ export default {
         loadEntry() {
             
             let entry;
-
             if ( this.id === 'new' ) {
                 entry = {
                     text: '',
@@ -130,7 +129,7 @@ export default {
         },
         async saveEntry() {
 
-            new Swal({
+            Swal.fire({
                 title: 'Espere por favor',
                 allowOutsideClick: false
             })
@@ -164,7 +163,7 @@ export default {
             })
 
             if ( isConfirmed ) {
-                new Swal({
+                Swal.fire({
                     title: 'Espere por favor',
                     allowOutsideClick: false
                 })
